@@ -5,6 +5,8 @@ import styles from "@/styles/Home.module.css";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-react";
+import Account from "./components/Account";
+import { NextPage } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,10 +31,13 @@ export default function Home() {
             <Auth
               supabaseClient={supabase}
               appearance={{ theme: ThemeSupa }}
-              providers = {['discord','google']}
+              providers={["discord", "google"]}
             ></Auth>
           ) : (
-            <p>Account Page will go here</p>
+            <>
+              <p>Account Page will go here</p>
+              {/* <Account session={session}></Account> */}
+            </>
           )}
         </div>
       </main>
