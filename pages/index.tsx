@@ -14,8 +14,8 @@ export default function Home() {
   const session = useSession();
   const supabase = useSupabaseClient();
 
-  console.log(session);
-  console.log(supabase);
+  // console.log(session);
+  // console.log(supabase);
 
   return (
     <>
@@ -36,7 +36,7 @@ export default function Home() {
           ) : (
             <>
               <p>Account Page will go here</p>
-              {/* <Account session={session}></Account> */}
+              <Account session={session}></Account>
             </>
           )}
         </div>

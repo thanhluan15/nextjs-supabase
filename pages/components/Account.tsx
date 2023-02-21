@@ -5,6 +5,7 @@ import {
 } from "@supabase/auth-helpers-react";
 import React, { useEffect, useState } from "react";
 import { Database } from "../utils/database.types";
+import Avatar from "./Avatar";
 
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
@@ -84,8 +85,6 @@ export default function Account({ session }: { session: Session }) {
     }
   }
 
-  
-
   console.log(name);
 
   return (
@@ -142,6 +141,15 @@ export default function Account({ session }: { session: Session }) {
           Sign In
         </button>
       </div>
+      <Avatar
+        uid={user?.id as string}
+        url={avatarUrl}
+        size={150}
+        onUpload={url => {
+          setAvatarUrl(url)
+          updateProfile({name, website, avatarUrl: url})
+        }}
+      ></Avatar>
     </div>
   );
 }

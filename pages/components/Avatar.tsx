@@ -1,6 +1,4 @@
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { SupabaseClient } from "@supabase/supabase-js";
-import { setLazyProp } from "next/dist/server/api-utils";
 import React, { useEffect, useState } from "react";
 import { Database } from "../utils/database.types";
 
@@ -20,13 +18,13 @@ export default function Avatar({
   const supabase = useSupabaseClient();
   const [avatarUrl, setAvatarUrl] = useState<Profiles["avatarUrl"]>(null);
   const [uploading, setUploading] = useState(false);
-  const [error, setError] = useState('')
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    if (avatarUrl) {
-      downloadImage(avatarUrl);
+    if (url) {
+      downloadImage(url);
     }
-  }, [avatarUrl]);
+  }, [url]);
 
   async function downloadImage(path: string) {
     try {
@@ -56,18 +54,15 @@ export default function Avatar({
     try {
       setUploading(true);
       if (!event.target.files || event.target.files.length === 0) {
-        setError("You must select image to upload !")
+        setError("You must select image to upload !");
         throw new Error("You must select image to upload !");
-      }
-      else{
-        setError('')
+      } else {
+        setError("");
       }
       const file = event.target.files[0];
       // const fileExt = file.name.split(".").pop();
       const fileName = file.name;
       const filePath = `${fileName}`;
-
-      console.log(onUpload);
 
       let { error: uploadError } = await supabase.storage
         .from("avatars")
@@ -77,15 +72,13 @@ export default function Avatar({
         console.log(uploadError);
       }
 
-      // onUpload(filePath);
+      onUpload(filePath);
     } catch (error) {
       console.log(error);
     } finally {
       setUploading(false);
     }
   };
-
-  console.log(avatarUrl);
 
   return (
     <div>
@@ -96,7 +89,7 @@ export default function Avatar({
             alt="Avatar"
             className="w-20 rounded-full"
           />
-          <input type="file"  onChange={uploadAvatar}/>
+          <input type="file" onChange={uploadAvatar} />
           <p>{error}</p>
         </div>
       ) : (
