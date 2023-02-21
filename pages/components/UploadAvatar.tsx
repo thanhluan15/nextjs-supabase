@@ -4,7 +4,7 @@ import { Database } from "../utils/database.types";
 
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
-export default function Avatar({
+export default function UploadAvatar({
   uid,
   url,
   size,
