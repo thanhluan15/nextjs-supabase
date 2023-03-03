@@ -17,15 +17,15 @@ export default function Account({ session }: { session: Session }) {
   const user = useUser();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const [name, setName] = useState<Profiles["username"]>(null);
-  const [website, setWebsite] = useState<Profiles["website"]>(null);
-  const [avatarUrl, setAvatarUrl] = useState<Profiles["avatarUrl"]>(null);
+  const [name, setName] = useState<Profiles["username"]>(null!);
+  const [website, setWebsite] = useState<Profiles["website"]>(null!);
+  const [avatarUrl, setAvatarUrl] = useState<Profiles["avatarUrl"]>(null!);
 
   useEffect(() => {
     getProfile();
   }, [session]);
 
-  console.log(user?.user_metadata?.picture)
+  console.log(user?.user_metadata?.picture);
 
   async function getProfile() {
     try {
@@ -92,7 +92,7 @@ export default function Account({ session }: { session: Session }) {
 
   return (
     <div className="flex justify-center flex-col items-center gap-2">
-      <Avatar src={user?.user_metadata?.picture || ""} />
+      <Avatar src={user?.user_metadata?.avatar_url || ""} />
       <div className="w-72 flex justify-center items-center ">
         <span>Email: </span> <Input name="Email" disabled value={user?.email} />
       </div>

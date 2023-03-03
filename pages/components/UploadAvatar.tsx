@@ -16,7 +16,7 @@ export default function UploadAvatar({
   onUpload: (url: string) => void;
 }) {
   const supabase = useSupabaseClient();
-  const [avatarUrl, setAvatarUrl] = useState<Profiles["avatarUrl"]>(null);
+  const [avatarUrl, setAvatarUrl] = useState<Profiles["avatarUrl"]>(null!);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
@@ -46,7 +46,7 @@ export default function UploadAvatar({
     }
   }
 
-  console.log(avatarUrl);
+  // console.log(avatarUrl);
 
   const uploadAvatar: React.ChangeEventHandler<HTMLInputElement> = async (
     event

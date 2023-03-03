@@ -16,7 +16,7 @@ export default function Example() {
   const [toggle, setToggle] = useState(false)
   const user = useUser();
 
-  console.log(user?.user_metadata?.picture);
+  // console.log(user?.user_metadata?.picture);
 
   useEffect(() => {
     window.addEventListener(
@@ -89,7 +89,7 @@ export default function Example() {
             </Button>
           </Link>
         ) : (
-          <Avatar src={user?.user_metadata?.picture} />
+          <Avatar src={user?.user_metadata?.avatar_url} />
         )}
         <IconButton
           variant="text"
